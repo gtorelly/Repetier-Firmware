@@ -70,9 +70,10 @@
 #define MIXING_EXTRUDER 0
 
 #define DRIVE_SYSTEM 0
-#define XAXIS_STEPS_PER_MM 100.0518
-#define YAXIS_STEPS_PER_MM 100.1848
+#define XAXIS_STEPS_PER_MM 100
+#define YAXIS_STEPS_PER_MM 100
 #define ZAXIS_STEPS_PER_MM 2560
+#define EXTRUDER_FAN_COOL_TEMP 50
 #define PDM_FOR_EXTRUDER 0
 #define PDM_FOR_COOLER 0
 #define DECOUPLING_TEST_MAX_HOLD_VARIANCE 20
@@ -107,9 +108,9 @@
 #define EXT0_WATCHPERIOD 1
 #define EXT0_PID_INTEGRAL_DRIVE_MAX 130
 #define EXT0_PID_INTEGRAL_DRIVE_MIN 60
-#define EXT0_PID_PGAIN_OR_DEAD_TIME 26.6
-#define EXT0_PID_I 4.05
-#define EXT0_PID_D 40.48
+#define EXT0_PID_PGAIN_OR_DEAD_TIME 24
+#define EXT0_PID_I 0.88
+#define EXT0_PID_D 80
 #define EXT0_PID_MAX 255
 #define EXT0_ADVANCE_K 0
 #define EXT0_ADVANCE_L 0
@@ -118,12 +119,7 @@
 #define EXT0_WAIT_RETRACT_UNITS 0
 #define EXT0_SELECT_COMMANDS ""
 #define EXT0_DESELECT_COMMANDS ""
-// FAN COOLER PIN FAN COOLER PIN FAN COOLER PIN FAN COOLER PIN FAN COOLER PIN - Was set to -1, I changed to ORIG_FAN_PIN
-#define EXT0_EXTRUDER_COOLER_PIN ORIG_FAN_PIN
-// FEATURE_FAN_CONTROL should be 0 so that the extruder fan turns on automatically at EXTRUDER_FAN_COOL_TEMP
-// If FEATURE_FAN_CONTROL is 1, the fan in controlled by the GCODE with M106 and M107 commands. 
-#define FEATURE_FAN_CONTROL 0
-#define EXTRUDER_FAN_COOL_TEMP 50
+#define EXT0_EXTRUDER_COOLER_PIN -1
 #define EXT0_EXTRUDER_COOLER_SPEED 255
 #define EXT0_DECOUPLE_TEST_PERIOD 12000
 #define EXT0_JAM_PIN -1
@@ -156,31 +152,31 @@
 #define PID_CONTROL_RANGE 15
 #define SKIP_M109_IF_WITHIN 2
 #define SCALE_PID_TO_MAX 0
-#define TEMP_HYSTERESIS 2
+#define TEMP_HYSTERESIS 5
 #define EXTRUDE_MAXLENGTH 100
 #define NUM_TEMPS_USERTHERMISTOR0 20
 // Guilherme - copiado do firmware original, é a tabela do thermistor smd de 15K da mesa
 #define USER_THERMISTORTABLE0 {\
-    {1*4, 669*8},\
-    {54*4, 180*8},\
-    {107*4, 140*8},\
-    {160*4, 119*8},\
-    {213*4, 104*8},\
-    {266*4, 93*8},\
-    {319*4, 83*8},\
-    {372*4, 75*8},\
-    {425*4, 68*8},\
-    {478*4, 61*8},\
-    {531*4, 55*8},\
-    {584*4, 48*8},\
-    {637*4, 42*8},\
-    {690*4, 36*8},\
-    {743*4, 29*8},\
-    {796*4, 22*8},\
-    {849*4, 14*8},\
-    {902*4, 5*8},\
-    {955*4, -7*8},\
-    {1008*4, -35*8}}
+   {1*4, 669*8},\
+   {54*4, 180*8},\
+   {107*4, 140*8},\
+   {160*4, 119*8},\
+   {213*4, 104*8},\
+   {266*4, 93*8},\
+   {319*4, 83*8},\
+   {372*4, 75*8},\
+   {425*4, 68*8},\
+   {478*4, 61*8},\
+   {531*4, 55*8},\
+   {584*4, 48*8},\
+   {637*4, 42*8},\
+   {690*4, 36*8},\
+   {743*4, 29*8},\
+   {796*4, 22*8},\
+   {849*4, 14*8},\
+   {902*4, 5*8},\
+   {955*4, -7*8},\
+   {1008*4, -35*8}}
 #define NUM_TEMPS_USERTHERMISTOR1 0
 #define USER_THERMISTORTABLE1 {}
 #define NUM_TEMPS_USERTHERMISTOR2 0
@@ -195,7 +191,7 @@
 #define HAVE_HEATED_BED 1
 #define HEATED_BED_PREHEAT_TEMP 55
 #define HEATED_BED_MAX_TEMP 125
-#define SKIP_M190_IF_WITHIN 1
+#define SKIP_M190_IF_WITHIN 3
 #define HEATED_BED_SENSOR_TYPE 5
 #define HEATED_BED_SENSOR_PIN TEMP_2_PIN
 #define HEATED_BED_HEATER_PIN HEATER_1_PIN
@@ -203,15 +199,15 @@
 #define HEATED_BED_HEAT_MANAGER 1
 #define HEATED_BED_PID_INTEGRAL_DRIVE_MAX 255
 #define HEATED_BED_PID_INTEGRAL_DRIVE_MIN 80
-#define HEATED_BED_PID_PGAIN_OR_DEAD_TIME 15
-#define HEATED_BED_PID_IGAIN 1
+#define HEATED_BED_PID_PGAIN_OR_DEAD_TIME   15
+#define HEATED_BED_PID_IGAIN   1
 #define HEATED_BED_PID_DGAIN 40
 #define HEATED_BED_PID_MAX 255
 #define HEATED_BED_DECOUPLE_TEST_PERIOD 300000
-#define MIN_EXTRUDER_TEMP 15
-#define MAXTEMP 250
-#define MIN_DEFECT_TEMPERATURE 15
-#define MAX_DEFECT_TEMPERATURE 260
+#define MIN_EXTRUDER_TEMP 0
+#define MAXTEMP 240
+#define MIN_DEFECT_TEMPERATURE -10
+#define MAX_DEFECT_TEMPERATURE 250
 #define MILLISECONDS_PREHEAT_TIME 30000
 
 // ##########################################################################################
@@ -219,24 +215,24 @@
 // ##########################################################################################
 
 /*
-  If the firmware is in laser mode, it can control a laser output to cut or engrave materials.
-  Please use this feature only if you know about safety and required protection. Lasers are
-  dangerous and can hurt or make you blind!!!
+If the firmware is in laser mode, it can control a laser output to cut or engrave materials.
+Please use this feature only if you know about safety and required protection. Lasers are
+dangerous and can hurt or make you blind!!!
 
-  The default laser driver only supports laser on and off. Here you control the intensity with
-  your feedrate. For exchangeable diode lasers this is normally enough. If you need more control
-  you can set the intensity in a range 0-255 with a custom extension to the driver. See driver.h
-  and comments on how to extend the functions non invasive with our event system.
+The default laser driver only supports laser on and off. Here you control the intensity with
+your feedrate. For exchangeable diode lasers this is normally enough. If you need more control
+you can set the intensity in a range 0-255 with a custom extension to the driver. See driver.h
+and comments on how to extend the functions non invasive with our event system.
 
-  If you have a laser - powder system you will like your E override. If moves contain a
-  increasing extruder position it will laser that move. With this trick you can
-  use existing fdm slicers to laser the output. Laser width is extrusion width.
+If you have a laser - powder system you will like your E override. If moves contain a
+increasing extruder position it will laser that move. With this trick you can
+use existing fdm slicers to laser the output. Laser width is extrusion width.
 
-  Other tools may use M3 and M5 to enable/disable laser. Here G1/G2/G3 moves have laser enabled
-  and G0 moves have it disables.
+Other tools may use M3 and M5 to enable/disable laser. Here G1/G2/G3 moves have laser enabled
+and G0 moves have it disables.
 
-  In any case, laser only enables while moving. At the end of a move it gets
-  automatically disabled.
+In any case, laser only enables while moving. At the end of a move it gets
+automatically disabled.
 */
 
 #define SUPPORT_LASER 0
@@ -249,10 +245,10 @@
 // ##                              CNC configuration                                       ##
 
 /*
-  If the firmware is in CNC mode, it can control a mill with M3/M4/M5. It works
-  similar to laser mode, but mill keeps enabled during G0 moves and it allows
-  setting rpm (only with event extension that supports this) and milling direction.
-  It also can add a delay to wait for spindle to run on full speed.
+If the firmware is in CNC mode, it can control a mill with M3/M4/M5. It works
+similar to laser mode, but mill keeps enabled during G0 moves and it allows
+setting rpm (only with event extension that supports this) and milling direction.
+It also can add a delay to wait for spindle to run on full speed.
 */
 
 #define SUPPORT_CNC 0
@@ -364,7 +360,7 @@
 #define Z_HOME_DIR 1
 #define X_MAX_LENGTH 200
 #define Y_MAX_LENGTH 200
-#define Z_MAX_LENGTH 148
+#define Z_MAX_LENGTH 150
 #define X_MIN_POS 0
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
@@ -372,6 +368,20 @@
 #define PARK_POSITION_Y 0
 #define PARK_POSITION_Z_RAISE 10
 
+
+#define DISTORTION_CORRECTION 0
+#define DISTORTION_CORRECTION_POINTS 5
+#define DISTORTION_LIMIT_TO 2
+#define DISTORTION_CORRECTION_R 100
+#define DISTORTION_PERMANENT 1
+#define DISTORTION_UPDATE_FREQUENCY 15
+#define DISTORTION_START_DEGRADE 0.5
+#define DISTORTION_END_HEIGHT 1
+#define DISTORTION_EXTRAPOLATE_CORNERS 0
+#define DISTORTION_XMIN 10
+#define DISTORTION_YMIN 10
+#define DISTORTION_XMAX 190
+#define DISTORTION_YMAX 190
 
 // ##########################################################################################
 // ##                           Movement settings                                          ##
@@ -415,11 +425,11 @@
 #define STEP_DOUBLER_FREQUENCY 12000
 #define ALLOW_QUADSTEPPING 1
 #define DOUBLE_STEP_DELAY 0 // time in microseconds
-#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_X 800
-#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_Y 800
+#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_X 1500
+#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_Y 1500
 #define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_Z 100
-#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_X 1000
-#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_Y 1000
+#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_X 3000
+#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_Y 3000
 #define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_Z 100
 #define INTERPOLATE_ACCELERATION_WITH_Z 0
 #define ACCELERATION_FACTOR_TOP 100
@@ -427,7 +437,7 @@
 #define MAX_ZJERK 0.3
 #define PRINTLINE_CACHE_SIZE 16
 #define MOVE_CACHE_LOW 10
-#define LOW_TICKS_PER_MOVE 115200
+#define LOW_TICKS_PER_MOVE 250000
 #define EXTRUDER_SWITCH_XY_SPEED 100
 #define DUAL_X_AXIS 0
 #define DUAL_X_RESOLUTION 0
@@ -468,19 +478,19 @@
 #define KEEP_ALIVE_INTERVAL 2000
 #define WAITING_IDENTIFIER "wait"
 #define ECHO_ON_EXECUTE 1
-#define EEPROM_MODE 5 // EEPROM EEPROM EEPROM EEPROM EEPROM EEPROM EEPROM EEPROM EEPROM EEPROM EEPROM EEPROM EEPROM EEPROM EEPROM EEPROM EEPROM
+#define EEPROM_MODE 1
 #undef PS_ON_PIN
 #define PS_ON_PIN -1
 #define JSON_OUTPUT 0
 
 /* ======== Servos =======
-  Control the servos with
-  M340 P<servoId> S<pulseInUS>   / ServoID = 0..3  pulseInUs = 500..2500
-  Servos are controlled by a pulse width normally between 500 and 2500 with 1500ms in center position. 0 turns servo off.
-  WARNING: Servos can draw a considerable amount of current. Make sure your system can handle this or you may risk your hardware!
+Control the servos with
+M340 P<servoId> S<pulseInUS>   / ServoID = 0..3  pulseInUs = 500..2500
+Servos are controlled by a pulse width normally between 500 and 2500 with 1500ms in center position. 0 turns servo off.
+WARNING: Servos can draw a considerable amount of current. Make sure your system can handle this or you may risk your hardware!
 */
-#define FEATURE_SERVO 1
-#define SERVO0_PIN 4
+#define FEATURE_SERVO 0
+#define SERVO0_PIN 11
 #define SERVO1_PIN -1
 #define SERVO2_PIN -1
 #define SERVO3_PIN -1
@@ -492,48 +502,46 @@
 #define FAN_KICKSTART_TIME  200
 #define MAX_FAN_PWM 255
 
-#define FEATURE_WATCHDOG 0
+        #define FEATURE_WATCHDOG 0
 
 // #################### Z-Probing #####################
 
-#define FEATURE_Z_PROBE 1
-#define Z_PROBE_Z_OFFSET 0 // offset to coating form real bed level
+#define Z_PROBE_Z_OFFSET 0
 #define Z_PROBE_Z_OFFSET_MODE 0
 #define UI_BED_COATING 1
+#define FEATURE_Z_PROBE 0
 #define EXTRUDER_IS_Z_PROBE 0
 #define Z_PROBE_DISABLE_HEATERS 0
-/** Gap between probe and bed resp. extruder and z sensor. Must be greater then initial z height inaccuracy!  */
-#define Z_PROBE_BED_DISTANCE 9
-/** The height is the difference between activated probe position and nozzle height. */
-#define Z_PROBE_HEIGHT 7.950 //Z_PROBE_HEIGHT Z_PROBE_HEIGHT Z_PROBE_HEIGHT Z_PROBE_HEIGHT Z_PROBE_HEIGHT Z_PROBE_HEIGHT Z_PROBE_HEIGHT Z_PROBE_HEIGHT 
-#define Z_PROBE_PIN 70
-#define Z_PROBE_PULLUP 1
+#define Z_PROBE_BED_DISTANCE 10
+#define Z_PROBE_PIN -1
+#define Z_PROBE_PULLUP 0
 #define Z_PROBE_ON_HIGH 0
-#define Z_PROBE_X_OFFSET 16
+#define Z_PROBE_X_OFFSET 0
 #define Z_PROBE_Y_OFFSET 0
 #define Z_PROBE_WAIT_BEFORE_TEST 0
-#define Z_PROBE_SPEED 1
-#define Z_PROBE_XY_SPEED 100
-#define Z_PROBE_SWITCHING_DISTANCE 3
-#define Z_PROBE_REPETITIONS 5
+#define Z_PROBE_SPEED 2
+#define Z_PROBE_XY_SPEED 150
+#define Z_PROBE_SWITCHING_DISTANCE 1
+#define Z_PROBE_REPETITIONS 1
 #define Z_PROBE_USE_MEDIAN 0
+#define Z_PROBE_HEIGHT 40
 #define Z_PROBE_DELAY 0
-#define Z_PROBE_START_SCRIPT "M340 P0 S2500 R2000\nG4 P1500" // Position the servo at 2500 with speed 2000 and wait for 1500 ms
-#define Z_PROBE_FINISHED_SCRIPT "M340 P0 S1600 R2000"
+#define Z_PROBE_START_SCRIPT ""
+#define Z_PROBE_FINISHED_SCRIPT ""
 #define Z_PROBE_RUN_AFTER_EVERY_PROBE ""
 #define Z_PROBE_REQUIRES_HEATING 0
 #define Z_PROBE_MIN_TEMPERATURE 150
-#define FEATURE_AUTOLEVEL 1
+#define FEATURE_AUTOLEVEL 0
 #define FEATURE_SOFTWARE_LEVELING 0
 #define Z_PROBE_X1 20
-#define Z_PROBE_Y1 5
-#define Z_PROBE_X2 190
-#define Z_PROBE_Y2 5
+#define Z_PROBE_Y1 20
+#define Z_PROBE_X2 160
+#define Z_PROBE_Y2 20
 #define Z_PROBE_X3 20
-#define Z_PROBE_Y3 195
-#define BED_LEVELING_METHOD 1
+#define Z_PROBE_Y3 160
+#define BED_LEVELING_METHOD 0
 #define BED_CORRECTION_METHOD 0
-#define BED_LEVELING_GRID_SIZE 3
+#define BED_LEVELING_GRID_SIZE 5
 #define BED_LEVELING_REPETITIONS 5
 #define BED_MOTOR_1_X 0
 #define BED_MOTOR_1_Y 0
@@ -549,23 +557,6 @@
 #define AXISCOMP_TANYZ 0
 #define AXISCOMP_TANXZ 0
 
-// #################### Distortion correction #####################
-#define DISTORTION_CORRECTION 1
-#define DISTORTION_CORRECTION_POINTS 4
-#define DISTORTION_LIMIT_TO 10
-#define DISTORTION_CORRECTION_R 150
-#define DISTORTION_PERMANENT 1
-#define DISTORTION_UPDATE_FREQUENCY 15
-#define DISTORTION_START_DEGRADE 0.5
-#define DISTORTION_END_HEIGHT 6
-#define DISTORTION_EXTRAPOLATE_CORNERS 1
-
-#define DISTORTION_XMIN 20
-#define DISTORTION_YMIN 5
-#define DISTORTION_XMAX 190
-#define DISTORTION_YMAX 195
-
-// #################### SD and LCD #####################
 #ifndef SDSUPPORT  // Some boards have sd support on board. These define the values already in pins.h
 #define SDSUPPORT 0
 #undef SDCARDDETECT
@@ -579,23 +570,24 @@
 #define ARC_SUPPORT 1
 #define FEATURE_MEMORY_POSITION 1
 #define FEATURE_CHECKSUM_FORCED 0
+#define FEATURE_FAN_CONTROL 1
 #define FEATURE_FAN2_CONTROL 0
-#define FEATURE_CONTROLLER 0 //2 Guilherme
+#define FEATURE_CONTROLLER 0
 #define ADC_KEYPAD_PIN -1
 #define LANGUAGE_EN_ACTIVE 1
-#define LANGUAGE_DE_ACTIVE 0
+#define LANGUAGE_DE_ACTIVE 1
 #define LANGUAGE_NL_ACTIVE 0
-#define LANGUAGE_PT_ACTIVE 0
-#define LANGUAGE_IT_ACTIVE 0
-#define LANGUAGE_ES_ACTIVE 0
+#define LANGUAGE_PT_ACTIVE 1
+#define LANGUAGE_IT_ACTIVE 1
+#define LANGUAGE_ES_ACTIVE 1
 #define LANGUAGE_FI_ACTIVE 0
 #define LANGUAGE_SE_ACTIVE 0
-#define LANGUAGE_FR_ACTIVE 0
+#define LANGUAGE_FR_ACTIVE 1
 #define LANGUAGE_CZ_ACTIVE 0
-#define LANGUAGE_PL_ACTIVE 0
-#define LANGUAGE_TR_ACTIVE 0
-#define UI_PRINTER_NAME "MM2"
-#define UI_PRINTER_COMPANY "Metamáquina"
+#define LANGUAGE_PL_ACTIVE 1
+#define LANGUAGE_TR_ACTIVE 1
+#define UI_PRINTER_NAME "RepRap"
+#define UI_PRINTER_COMPANY "Home made"
 #define UI_PAGES_DURATION 4000
 #define UI_SPEEDDEPENDENT_POSITIONING 0
 #define UI_DISABLE_AUTO_PAGESWITCH 1
@@ -607,16 +599,16 @@
 #define UI_KEY_FIRST_REPEAT 500
 #define UI_KEY_REDUCE_REPEAT 50
 #define UI_KEY_MIN_REPEAT 50
-#define FEATURE_BEEPER 1
+#define FEATURE_BEEPER 0
 #define CASE_LIGHTS_PIN -1
 #define CASE_LIGHT_DEFAULT_ON 1
 #define UI_START_SCREEN_DELAY 1000
 #define UI_DYNAMIC_ENCODER_SPEED 1
-/**
-  Beeper sound definitions for short beeps during key actions
-  and longer beeps for important actions.
-  Parameter is delay in microseconds and the secons is the number of repetitions.
-  Values must be in range 1..255
+        /**
+Beeper sound definitions for short beeps during key actions
+and longer beeps for important actions.
+Parameter is delay in microseconds and the secons is the number of repetitions.
+Values must be in range 1..255
 */
 #define BEEPER_SHORT_SEQUENCE 2,2
 #define BEEPER_LONG_SEQUENCE 8,8
@@ -636,8 +628,8 @@
 
 /* Below you will find the configuration string, that created this Configuration.h
 
-  ========== Start configuration string ==========
-  {
+========== Start configuration string ==========
+{
     "editMode": 1,
     "processor": 0,
     "baudrate": 115200,
@@ -1307,7 +1299,7 @@
     "numExtruder": 1,
     "version": 100.2,
     "primaryPortName": ""
-  }
-  ========== End configuration string ==========
+}
+========== End configuration string ==========
 
 */
